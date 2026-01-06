@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/thash/asana/api"
+	"github.com/ttk/asana/api"
 	"github.com/urfave/cli/v2"
 )
 

@@ -10,8 +10,8 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/thash/asana/config"
-	"github.com/thash/asana/utils"
+	"github.com/ttk/asana/config"
+	"github.com/ttk/asana/utils"
 )
 
 type CustomField_t struct {

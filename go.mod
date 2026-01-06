@@ -1,4 +1,4 @@
-module github.com/thash/asana
+module github.com/ttk/asana
 
 go 1.17
 

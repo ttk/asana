@@ -7,7 +7,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/thash/asana/api"
+	"github.com/ttk/asana/api"
 )
 
 const (

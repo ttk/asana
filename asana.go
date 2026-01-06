@@ -5,7 +5,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/thash/asana/commands"
+	"github.com/ttk/asana/commands"
 )
 
 func main() {
