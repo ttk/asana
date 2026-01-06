@@ -19,9 +19,11 @@ func Config(c *cli.Context) {
 		println("visit: http://app.asana.com/-/account_api")
 		println("  Settings > Apps > Manage Developer Apps > Personal Access Tokens")
 		println("  + Create New Personal Access Token")
-		print("\npaste your Personal Access Token: ")
 		var s string
-		fmt.Scanf("%s", &s)
+		for s == "" {
+			print("\npaste your Personal Access Token: ")
+			fmt.Scanf("%s", &s)
+		}
 
 		f, _ := os.Create(utils.Home() + "/.asana.yml")
 		defer f.Close()
