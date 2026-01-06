@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -19,10 +20,16 @@ func Config(c *cli.Context) {
 		println("visit: http://app.asana.com/-/account_api")
 		println("  Settings > Apps > Manage Developer Apps > Personal Access Tokens")
 		println("  + Create New Personal Access Token")
+
+		scanner := bufio.NewScanner(os.Stdin)
+		fmt.Print("paste your Personal Access Token: ")
 		var s string
-		for s == "" {
-			print("\npaste your Personal Access Token: ")
-			fmt.Scanf("%s", &s)
+		if scanner.Scan() {
+			s = scanner.Text()
+		}
+
+		if s == "" {
+			return
 		}
 
 		f, _ := os.Create(utils.Home() + "/.asana.yml")
