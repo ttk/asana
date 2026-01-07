@@ -90,9 +90,23 @@ func defs() []*cli.Command {
 			},
 		},
 		{
-			Name:    "browse",
-			Aliases: []string{"b"},
-			Usage:   "open a task in the web browser",
+			Name:      "set-sec",
+			Aliases:   []string{"ss"},
+			Usage:     "set task section",
+			ArgsUsage: "<task-index> <section>",
+			Flags: []cli.Flag{
+				&cli.StringFlag{Name: "project", Aliases: []string{"p"}, Usage: "project keyword to match"},
+			},
+			Action: func(c *cli.Context) error {
+				commands.SetSection(c)
+				return nil
+			},
+		},
+		{
+			Name:      "browse",
+			Aliases:   []string{"b"},
+			Usage:     "open a task in the web browser",
+			ArgsUsage: "<task-index>",
 			Action: func(c *cli.Context) error {
 				commands.Browse(c)
 				return nil

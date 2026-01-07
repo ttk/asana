@@ -21,6 +21,11 @@ type CustomField_t struct {
 	Type         string `json:"type"`
 }
 
+type Section_t struct {
+	Gid  string `json:"gid"`
+	Name string `json:"name"`
+}
+
 type Attachment_t struct {
 	Gid          string `json:"gid"`
 	Name         string `json:"name"`
@@ -187,4 +192,15 @@ func Update(taskId string, key string, value string) Task_t {
 	utils.Check(err)
 
 	return output["data"]
+}
+
+func GetSectionsForProject(projectGid string) []Section_t {
+	var sections map[string][]Section_t
+	err := json.Unmarshal(Get("/api/1.0/projects/"+projectGid+"/sections", nil), &sections)
+	utils.Check(err)
+	return sections["data"]
+}
+
+func AddTaskToSection(sectionGid string, taskGid string) {
+	Post("/sections/"+sectionGid+"/addTask", `{"data":{"task":"`+taskGid+`"}}`)
 }
