@@ -58,6 +58,7 @@ func defs() []*cli.Command {
 			ArgsUsage: "<task-index>",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{Name: "verbose", Aliases: []string{"v"}, Usage: "verbose output"},
+				&cli.BoolFlag{Name: "with-comments", Aliases: []string{"c"}, Usage: "include comments"},
 				&cli.BoolFlag{Name: "json", Aliases: []string{"j"}, Usage: "output as JSON"},
 			},
 			Action: func(c *cli.Context) error {
