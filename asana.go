@@ -52,9 +52,10 @@ func defs() []*cli.Command {
 			},
 		},
 		{
-			Name:    "task",
-			Aliases: []string{"t"},
-			Usage:   "get a task",
+			Name:      "task",
+			Aliases:   []string{"t"},
+			Usage:     "get a task",
+			ArgsUsage: "<task-index>",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{Name: "verbose", Aliases: []string{"v"}, Usage: "verbose output"},
 				&cli.BoolFlag{Name: "json", Aliases: []string{"j"}, Usage: "output as JSON"},
@@ -65,25 +66,28 @@ func defs() []*cli.Command {
 			},
 		},
 		{
-			Name:    "comment",
-			Aliases: []string{"cm"},
-			Usage:   "Post comment",
+			Name:      "comment",
+			Aliases:   []string{"cm"},
+			Usage:     "Post comment",
+			ArgsUsage: "<task-index>",
 			Action: func(c *cli.Context) error {
 				commands.Comment(c)
 				return nil
 			},
 		},
 		{
-			Name:  "done",
-			Usage: "Complete task",
+			Name:      "done",
+			Usage:     "Complete task",
+			ArgsUsage: "<task-index>",
 			Action: func(c *cli.Context) error {
 				commands.Done(c)
 				return nil
 			},
 		},
 		{
-			Name:  "due",
-			Usage: "set due date",
+			Name:      "due",
+			Usage:     "set due date",
+			ArgsUsage: "<task-index> <date>",
 			Action: func(c *cli.Context) error {
 				commands.DueOn(c)
 				return nil
@@ -113,9 +117,10 @@ func defs() []*cli.Command {
 			},
 		},
 		{
-			Name:    "download",
-			Aliases: []string{"dl"},
-			Usage:   "download attachment from a task",
+			Name:      "download",
+			Aliases:   []string{"dl"},
+			Usage:     "download attachment from a task",
+			ArgsUsage: "<task_index> <attachment_index> or <attachment_index>",
 			Flags: []cli.Flag{
 				&cli.StringFlag{Name: "output", Aliases: []string{"o"}, Usage: "output file path"},
 			},
