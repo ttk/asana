@@ -47,7 +47,7 @@ type Task_t struct {
 	Workspace       Base            `json:"workspace"`
 	Parent          Base            `json:"parent"`
 	Projects        []Base          `json:"projects"`
-	Folloers        []Base          `json:"followers"`
+	Followers       []Base          `json:"followers"`
 }
 
 type Story_t struct {
