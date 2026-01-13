@@ -71,6 +71,9 @@ func defs() []*cli.Command {
 			Aliases:   []string{"cm"},
 			Usage:     "Post comment",
 			ArgsUsage: "<task-index-or-id>",
+			Flags: []cli.Flag{
+				&cli.StringFlag{Name: "comment", Aliases: []string{"c"}, Usage: "comment text (if not provided, opens editor)"},
+			},
 			Action: func(c *cli.Context) error {
 				commands.Comment(c)
 				return nil

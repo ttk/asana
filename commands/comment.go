@@ -16,25 +16,39 @@ import (
 
 func Comment(c *cli.Context) {
 	taskId := api.FindTaskId(c.Args().First(), false)
-	task, stories := api.Task(taskId, true)
 
-	tmpFile := os.TempDir() + "/asana_comment.txt"
-	f, err := os.Create(tmpFile)
-	utils.Check(err)
-	defer f.Close()
+	// Check if comment is provided via flag
+	commentText := c.String("comment")
 
-	err = template(f, task, stories)
-	utils.Check(err)
+	var postComment string
+	var task api.Task_t
 
-	cmd := exec.Command(os.Getenv("EDITOR"), tmpFile)
-	cmd.Stdin, cmd.Stdout = os.Stdin, os.Stdout
-	err = cmd.Run()
+	if commentText != "" {
+		// Use the provided comment directly
+		postComment = commentText
+		task, _ = api.Task(taskId, false)
+	} else {
+		// Fall back to editor behavior
+		task, stories := api.Task(taskId, true)
 
-	txt, err := ioutil.ReadFile(tmpFile)
+		tmpFile := os.TempDir() + "/asana_comment.txt"
+		f, err := os.Create(tmpFile)
+		utils.Check(err)
+		defer f.Close()
 
-	utils.Check(err)
+		err = template(f, task, stories)
+		utils.Check(err)
 
-	postComment := trim(string(txt))
+		cmd := exec.Command(os.Getenv("EDITOR"), tmpFile)
+		cmd.Stdin, cmd.Stdout = os.Stdin, os.Stdout
+		err = cmd.Run()
+
+		txt, err := ioutil.ReadFile(tmpFile)
+		utils.Check(err)
+
+		postComment = trim(string(txt))
+	}
+
 	if postComment != "" {
 		commented := api.CommentTo(taskId, postComment)
 		fmt.Println("Commented on Task: \"" + task.Name + "\"\n")
