@@ -27,13 +27,14 @@ type Section_t struct {
 }
 
 type Attachment_t struct {
-	Gid          string `json:"gid"`
-	Name         string `json:"name"`
-	CreatedAt    string `json:"created_at"`
-	DownloadUrl  string `json:"download_url"`
-	ViewUrl      string `json:"view_url"`
-	PermanentUrl string `json:"permanent_url"`
-	Host         string `json:"host"`
+	Gid             string `json:"gid"`
+	Name            string `json:"name"`
+	CreatedAt       string `json:"created_at"`
+	DownloadUrl     string `json:"download_url"`
+	ViewUrl         string `json:"view_url"`
+	PermanentUrl    string `json:"permanent_url"`
+	Host            string `json:"host"`
+	ResourceSubtype string `json:"resource_subtype"`
 }
 
 type Task_t struct {
