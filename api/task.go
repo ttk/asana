@@ -132,14 +132,21 @@ func Attachment(attachmentId string) Attachment_t {
 	return attachment["data"]
 }
 
-func FindTaskId(index string, autoFirst bool) string {
-	if index == "" {
+func FindTaskId(indexOrId string, autoFirst bool) string {
+	if indexOrId == "" {
 		if autoFirst == false {
 			log.Fatal("fatal: Task index is required.")
 		} else {
-			index = "0"
+			indexOrId = "0"
 		}
 	}
+
+	// If value is a number >= 100, treat it as an ID and return directly
+	if num, err := strconv.Atoi(indexOrId); err == nil && num >= 100 {
+		return indexOrId
+	}
+
+	index := indexOrId
 
 	var id string
 	txt, err := ioutil.ReadFile(utils.CacheFile())

@@ -55,7 +55,7 @@ func defs() []*cli.Command {
 			Name:      "task",
 			Aliases:   []string{"t"},
 			Usage:     "get a task",
-			ArgsUsage: "<task-index>",
+			ArgsUsage: "<task-index-or-id>",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{Name: "verbose", Aliases: []string{"v"}, Usage: "verbose output"},
 				&cli.BoolFlag{Name: "with-comments", Aliases: []string{"c"}, Usage: "include comments"},
@@ -70,7 +70,7 @@ func defs() []*cli.Command {
 			Name:      "comment",
 			Aliases:   []string{"cm"},
 			Usage:     "Post comment",
-			ArgsUsage: "<task-index>",
+			ArgsUsage: "<task-index-or-id>",
 			Action: func(c *cli.Context) error {
 				commands.Comment(c)
 				return nil
@@ -79,7 +79,7 @@ func defs() []*cli.Command {
 		{
 			Name:      "done",
 			Usage:     "Complete task",
-			ArgsUsage: "<task-index>",
+			ArgsUsage: "<task-index-or-id>",
 			Action: func(c *cli.Context) error {
 				commands.Done(c)
 				return nil
@@ -88,7 +88,7 @@ func defs() []*cli.Command {
 		{
 			Name:      "due",
 			Usage:     "set due date",
-			ArgsUsage: "<task-index> <date>",
+			ArgsUsage: "<task-index-or-id> <date>",
 			Action: func(c *cli.Context) error {
 				commands.DueOn(c)
 				return nil
@@ -98,7 +98,7 @@ func defs() []*cli.Command {
 			Name:      "set-sec",
 			Aliases:   []string{"ss"},
 			Usage:     "set task section",
-			ArgsUsage: "<task-index> <section>",
+			ArgsUsage: "<task-index-or-id> <section>",
 			Flags: []cli.Flag{
 				&cli.StringFlag{Name: "project", Aliases: []string{"p"}, Usage: "project keyword to match"},
 			},
@@ -111,7 +111,7 @@ func defs() []*cli.Command {
 			Name:      "browse",
 			Aliases:   []string{"b"},
 			Usage:     "open a task in the web browser",
-			ArgsUsage: "<task-index>",
+			ArgsUsage: "<task-index-or-id>",
 			Action: func(c *cli.Context) error {
 				commands.Browse(c)
 				return nil
@@ -121,7 +121,7 @@ func defs() []*cli.Command {
 			Name:      "download",
 			Aliases:   []string{"dl"},
 			Usage:     "download attachment from a task",
-			ArgsUsage: "<task_index> <attachment_index> or <attachment_index>",
+			ArgsUsage: "<task-index-or-id> <attachment-index> or <attachment-index>",
 			Flags: []cli.Flag{
 				&cli.StringFlag{Name: "output", Aliases: []string{"o"}, Usage: "output file path"},
 			},
