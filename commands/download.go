@@ -16,16 +16,14 @@ import (
 func Download(c *cli.Context) {
 	args := c.Args()
 	if args.Len() < 1 {
-		fmt.Println("Usage: asana download <task_index> <attachment_index>")
-		fmt.Println("       asana download <attachment_gid>")
-		fmt.Println("\nTo see attachments, use: asana task <task_index>")
+		PrintUsage()
 		return
 	}
 
 	var attachment api.Attachment_t
 
 	// Check if first argument is an attachment GID (starts with "1" and is long)
-	if len(args.First()) > 10 && args.Len() == 1 {
+	if len(args.First()) > 100 && args.Len() == 1 {
 		// Assume it's an attachment GID
 		attachment = api.Attachment(args.First())
 	} else if args.Len() >= 2 {
@@ -47,8 +45,7 @@ func Download(c *cli.Context) {
 		// Get full attachment details with download URL
 		attachment = api.Attachment(attachments[attIndex].Gid)
 	} else {
-		fmt.Println("Usage: asana download <task_index> <attachment_index>")
-		fmt.Println("       asana download <attachment_gid>")
+		PrintUsage()
 		return
 	}
 
@@ -97,4 +94,10 @@ func Download(c *cli.Context) {
 	}
 
 	fmt.Printf("Downloaded successfully! (%d bytes)\n", written)
+}
+
+func PrintUsage() {
+	fmt.Println("Usage: asana download <task-index-or-id> <attachment-index>")
+	fmt.Println("       asana download <attachment-gid>")
+	fmt.Println("\nTo see attachments, use: asana task <task-index-or-id>")
 }
