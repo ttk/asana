@@ -45,6 +45,7 @@ func defs() []*cli.Command {
 			Flags: []cli.Flag{
 				&cli.BoolFlag{Name: "no-cache, n", Usage: "without cache"},
 				&cli.BoolFlag{Name: "refresh, r", Usage: "update cache"},
+				&cli.BoolFlag{Name: "json, j", Usage: "output as JSON"},
 			},
 			Action: func(c *cli.Context) error {
 				commands.Tasks(c)
