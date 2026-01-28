@@ -49,7 +49,11 @@ func Task(c *cli.Context) {
 		return
 	}
 
-	fmt.Printf("[ %s ] %s\n", t.Due_on, t.Name)
+	fmt.Println("Task:")
+	fmt.Printf("    Name: %s\n", t.Name)
+	fmt.Printf("    Due On: %s\n", t.Due_on)
+	fmt.Printf("    Gid: %s\n", t.Gid)
+	fmt.Printf("    URL: https://app.asana.com/0/0/%s\n", t.Gid)
 
 	showTags(t.Tags)
 	showCustomFields(t.CustomFields)
