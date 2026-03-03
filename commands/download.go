@@ -23,7 +23,8 @@ func Download(c *cli.Context) {
 	var attachment api.Attachment_t
 
 	// Check if first argument is an attachment GID (starts with "1" and is long)
-	if len(args.First()) > 100 && args.Len() == 1 {
+	firstArg, err := strconv.Atoi(args.First())
+	if args.Len() == 1 && err == nil && firstArg > 100 {
 		// Assume it's an attachment GID
 		attachment = api.Attachment(args.First())
 	} else if args.Len() >= 2 {
